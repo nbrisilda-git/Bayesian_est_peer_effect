@@ -3,7 +3,7 @@
 ### Including more information in the selection part
 ################################################################################
  
-setwd("C:\\Users\\Brisilda Ndreka\\OneDrive\\Desktop\\bayes project")
+setwd("C:\\")
 
 library(mvtnorm)
 library(igraph)
@@ -51,11 +51,11 @@ n = 80
 ## selection
 alpha0 = -0.4
 alpha1 = -0.45
-alpha2 = 1.5  #??????
+alpha2 = -0.5
 
 ## influence
-beta1 = 0.5
-beta2 = 0.8
+beta1 = 0.3
+beta2 = 0.6
 sigma = 0.3
 
 #Z<-rmvt(n,sigma=0.1*diag(2))  # latent c_i and C_j (column 1 and 2)
@@ -135,11 +135,10 @@ PP1<-PP[[1]]
 PP2<-PP[[2]]
 PP3<-PP[[3]]
 
-#setwd("C:\\Users\\Brisilda Ndreka\\Dropbox\\Brisilda")
 
-initf1 <- function() {list(ZZ = rep(0,n))}  #????? 
+initf1 <- function() {list(ZZ = rep(0,n))}  
 
-fit2_stanAR <- stan(file='stanprogramRANXU-full1.stan', init = initf1,
+fit2_stanAR <- stan(file='codeStan.stan', init = initf1,
                    data = list(n1=n, n=n1, x_p=x_p, y=y,x=x,PP1=PP1,PP2=PP2,PP3=PP3),
                    thin = 1000, chains = 2, iter = 10000, warmup = 1000,
                    seed = 9955)
