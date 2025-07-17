@@ -4,9 +4,19 @@
 ################################################################################
  
 setwd("C:\\")
-
+# Check and install required packages
+if (!require(mvtnorm)) install.packages("mvtnorm")
 library(mvtnorm)
+
+if (!require(igraph)) install.packages("igraph")
 library(igraph)
+
+if (!require(rstan)) install.packages("rstan")
+library(rstan, quietly = TRUE)
+
+if (!require(shinystan)) install.packages("shinystan")
+library(shinystan)
+
 
 Probit = function(d, yy, alpha0, alpha1, alpha2)
 {
@@ -125,8 +135,7 @@ y<-c(y)
 
 ##### STAN
 
-library(rstan, quietly = T)
-library(shinystan)
+
 n1 <- length(y)
 x<- cbind(ylag, expo)
 x_p<- ncol(x)
